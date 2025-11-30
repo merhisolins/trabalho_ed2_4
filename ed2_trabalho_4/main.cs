@@ -1,18 +1,149 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MeuProjeto;  
+using MeuProjeto;
 
 class Program
 {
+    static BPlusTree<int, Cliente> arvore = new BPlusTree<int, Cliente>(2);
+
     static void Main(string[] args)
     {
-        var arvore = new BPlusTree<int, Cliente>(2);
+        bool sair = false;
 
+        while (!sair)
+        {
+            Console.WriteLine("\n======== MENU ÁRVORE B+ ========");
+            Console.WriteLine("1 - Inserir cliente manualmente");
+            Console.WriteLine("2 - Inserir cliente aleatório");
+            Console.WriteLine("3 - Buscar cliente");
+            Console.WriteLine("4 - Remover cliente");
+            Console.WriteLine("5 - Listar clientes");
+            Console.WriteLine("6 - Executar TESTE automático (seu código original)");
+            Console.WriteLine("7 - Salvar arquivos (metadados/indice/dados)");
+            Console.WriteLine("8 - Sair");
+            Console.Write("Escolha: ");
+
+            string op = Console.ReadLine();
+            Console.WriteLine();
+
+            switch (op)
+            {
+                case "1": InserirClienteManual(); break;
+                case "2": InserirClienteAleatorio(); break;
+                case "3": BuscarCliente(); break;
+                case "4": RemoverCliente(); break;
+                case "5": ListarClientes(); break;
+                case "6": TesteAutomatico(); break;
+                case "7": SalvarArquivos(arvore, "metadados.txt", "indice.txt", "dados.txt"); break;
+                case "8": sair = true; break;
+                default: Console.WriteLine("Opção inválida."); break;
+            }
+        }
+    }
+
+    // ==========================================================
+    // 1 - INSERIR CLIENTE MANUAL
+    // ==========================================================
+    static void InserirClienteManual()
+    {
+        Console.Write("Código: ");
+        if (!int.TryParse(Console.ReadLine(), out int cod))
+        {
+            Console.WriteLine("Código inválido.");
+            return;
+        }
+
+        Console.Write("Nome: ");
+        string nome = Console.ReadLine();
+        Console.Write("Idade: ");
+        int idade = int.Parse(Console.ReadLine());
+
+        Console.Write("Telefone: ");
+        string telefone = Console.ReadLine();
+
+        var cli = new Cliente
+        {
+            CodCliente = cod,
+            Nome = nome,
+            Idade = idade,
+            Telefone = telefone
+        };
+
+        arvore.Insert(cod, cli);
+        Console.WriteLine("Cliente inserido.");
+    }
+
+    // ==========================================================
+    // 2 - INSERIR CLIENTE ALEATÓRIO (usa seu GeradorClientes)
+    // ==========================================================
+    static void InserirClienteAleatorio()
+    {
+        Cliente cli = GeradorClientes.GerarCliente();
+        arvore.Insert(cli.CodCliente, cli);
+        Console.WriteLine($"Inserido automaticamente: {cli}");
+    }
+
+    // ==========================================================
+    // 3 - BUSCAR CLIENTE
+    // ==========================================================
+    static void BuscarCliente()
+    {
+        Console.Write("Código para buscar: ");
+        if (!int.TryParse(Console.ReadLine(), out int cod))
+        {
+            Console.WriteLine("Código inválido.");
+            return;
+        }
+
+        if (arvore.TryGetValue(cod, out Cliente encontrado))
+            Console.WriteLine($"Encontrado: {encontrado}");
+        else
+            Console.WriteLine("Cliente não encontrado.");
+    }
+
+    // ==========================================================
+    // 4 - REMOVER CLIENTE
+    // ==========================================================
+    static void RemoverCliente()
+    {
+        Console.Write("Código para remover: ");
+        if (!int.TryParse(Console.ReadLine(), out int cod))
+        {
+            Console.WriteLine("Código inválido.");
+            return;
+        }
+
+        arvore.Remove(cod);
+        Console.WriteLine("Cliente removido (se existia).");
+    }
+
+    // ==========================================================
+    // 5 - LISTAR CLIENTES
+    // ==========================================================
+    static void ListarClientes()
+    {
+        bool vazio = true;
+
+        arvore.ForEachInOrder((cod, cli) =>
+        {
+            vazio = false;
+            Console.WriteLine(cli);
+        });
+
+        if (vazio)
+            Console.WriteLine("Árvore vazia.");
+    }
+
+    // ==========================================================
+    // 6 - TESTE AUTOMÁTICO (sua main original)
+    // ==========================================================
+    static void TesteAutomatico()
+    {
+        arvore = new BPlusTree<int, Cliente>(2);
         var codigosInseridos = new List<int>();
 
-
-        Console.WriteLine("Inserindo clientes aleatórios...\n");
+        Console.WriteLine("Inserindo 10 clientes aleatórios...\n");
 
         for (int i = 0; i < 10; i++)
         {
@@ -24,40 +155,24 @@ class Program
         }
 
         Console.WriteLine("\n--- Teste de Busca ---");
-        int codigoBusca = codigosInseridos[3]; 
+        int codigoBusca = codigosInseridos[3];
 
         if (arvore.TryGetValue(codigoBusca, out Cliente encontrado))
-        {
-            Console.WriteLine($"Busca por {codigoBusca}: ENCONTRADO -> {encontrado}");
-        }
+            Console.WriteLine($"Busca por {codigoBusca}: ENCONTRADO → {encontrado}");
         else
-        {
             Console.WriteLine($"Busca por {codigoBusca}: NÃO encontrado");
-        }
 
         Console.WriteLine("\n--- Teste de Exclusão ---");
         int codigoRemocao = codigosInseridos[5];
-
-        Console.WriteLine($"Removendo cliente com código {codigoRemocao}...");
         arvore.Remove(codigoRemocao);
 
         if (arvore.TryGetValue(codigoRemocao, out _))
-        {
-            Console.WriteLine($"ERRO: cliente {codigoRemocao} ainda está na árvore!");
-        }
+            Console.WriteLine($"ERRO: {codigoRemocao} ainda está na árvore!");
         else
-        {
-            Console.WriteLine($"Ok: cliente {codigoRemocao} foi removido.");
-        }
+            Console.WriteLine($"Ok: {codigoRemocao} removido com sucesso.");
 
-        SalvarArquivos(arvore, "metadados.txt", "indice.txt", "dados.txt");
-
-        Console.WriteLine("\nArquivos gerados:");
-        Console.WriteLine(" - metadados.txt");
-        Console.WriteLine(" - indice.txt");
-        Console.WriteLine(" - dados.txt");
+        Console.WriteLine("\nFim do teste automático.");
     }
-
     static void SalvarArquivos(BPlusTree<int, Cliente> arvore, string arqMetadados, string arqIndice, string arqDados)
     {
         var listaClientes = new List<Cliente>();
@@ -80,18 +195,15 @@ class Program
         using (var idx = new StreamWriter(arqIndice))
         {
             foreach (var cli in listaClientes)
-            {
                 idx.WriteLine(cli.CodCliente);
-            }
         }
 
-        
         using (var dados = new StreamWriter(arqDados))
         {
             foreach (var cli in listaClientes)
-            {
                 dados.WriteLine($"{cli.CodCliente};{cli.Nome};{cli.Idade};{cli.Telefone}");
-            }
         }
+
+        Console.WriteLine("Arquivos salvos com sucesso.");
     }
 }

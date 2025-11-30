@@ -12,3 +12,4 @@ C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\refint\ed
 C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.pdb
 C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.genruntimeconfig.cache
 C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ref\ed2_trabalho_4.dll
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.sourcelink.json
