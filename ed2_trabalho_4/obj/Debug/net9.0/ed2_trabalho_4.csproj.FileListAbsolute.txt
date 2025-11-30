@@ -1,0 +1,14 @@
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\bin\Debug\net9.0\ed2_trabalho_4.exe
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\bin\Debug\net9.0\ed2_trabalho_4.deps.json
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\bin\Debug\net9.0\ed2_trabalho_4.runtimeconfig.json
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\bin\Debug\net9.0\ed2_trabalho_4.dll
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\bin\Debug\net9.0\ed2_trabalho_4.pdb
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.AssemblyInfoInputs.cache
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.AssemblyInfo.cs
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.csproj.CoreCompileInputs.cache
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.dll
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\refint\ed2_trabalho_4.dll
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.pdb
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ed2_trabalho_4.genruntimeconfig.cache
+C:\Users\USER\Downloads\ed2_trabalho_4\ed2_trabalho_4\obj\Debug\net9.0\ref\ed2_trabalho_4.dll

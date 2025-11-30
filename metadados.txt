@@ -1,0 +1,4 @@
+Ordem=2
+QuantidadeRegistros=9
+ArquivoIndice=indice.txt
+ArquivoDados=dados.txt
