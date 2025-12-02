@@ -433,25 +433,33 @@ namespace MeuProjeto
         }
 
         private void MergeInternal(Node parent, Node leftNode, Node rightNode, int separatorIndex)
-        {
-            int k = leftNode.KeyCount;
-            leftNode.Keys[k] = parent.Keys[separatorIndex];
-            k++;
+        {            
+            int kL = leftNode.KeyCount;
+            
+            leftNode.Keys[kL] = parent.Keys[separatorIndex];
+            
+            leftNode.Children[kL + 1] = rightNode.Children[0];
+            if (leftNode.Children[kL + 1] != null)
+                leftNode.Children[kL + 1].Parent = leftNode;
+    
+            for (int j = 0; j < rightNode.KeyCount; j++)
+            {
+                leftNode.Keys[kL + 1 + j] = rightNode.Keys[j];
+
+                leftNode.Children[kL + 2 + j] = rightNode.Children[j + 1];
+                if (leftNode.Children[kL + 2 + j] != null)
+                    leftNode.Children[kL + 2 + j].Parent = leftNode;
+            }
+     
+            leftNode.KeyCount = kL + 1 + rightNode.KeyCount;
 
             for (int j = 0; j < rightNode.KeyCount; j++)
             {
-                leftNode.Keys[k] = rightNode.Keys[j];
-                leftNode.Children[k] = rightNode.Children[j];
-                if (leftNode.Children[k] != null)
-                    leftNode.Children[k].Parent = leftNode;
-                k++;
+                rightNode.Keys[j] = default;
+                rightNode.Children[j] = null;
             }
-
-            leftNode.Children[k] = rightNode.Children[rightNode.KeyCount];
-            if (leftNode.Children[k] != null)
-                leftNode.Children[k].Parent = leftNode;
-
-            leftNode.KeyCount = k;
+            rightNode.Children[rightNode.KeyCount] = null;
+            rightNode.KeyCount = 0;
 
             RemoveInternalEntry(parent, separatorIndex);
         }

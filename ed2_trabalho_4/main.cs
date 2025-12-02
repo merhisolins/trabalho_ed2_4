@@ -41,10 +41,6 @@ class Program
             }
         }
     }
-
-    // ==========================================================
-    // 1 - INSERIR CLIENTE MANUAL
-    // ==========================================================
     static void InserirClienteManual()
     {
         Console.Write("Código: ");
@@ -74,19 +70,12 @@ class Program
         Console.WriteLine("Cliente inserido.");
     }
 
-    // ==========================================================
-    // 2 - INSERIR CLIENTE ALEATÓRIO (usa seu GeradorClientes)
-    // ==========================================================
     static void InserirClienteAleatorio()
     {
         Cliente cli = GeradorClientes.GerarCliente();
         arvore.Insert(cli.CodCliente, cli);
         Console.WriteLine($"Inserido automaticamente: {cli}");
     }
-
-    // ==========================================================
-    // 3 - BUSCAR CLIENTE
-    // ==========================================================
     static void BuscarCliente()
     {
         Console.Write("Código para buscar: ");
@@ -102,9 +91,7 @@ class Program
             Console.WriteLine("Cliente não encontrado.");
     }
 
-    // ==========================================================
-    // 4 - REMOVER CLIENTE
-    // ==========================================================
+
     static void RemoverCliente()
     {
         Console.Write("Código para remover: ");
@@ -118,9 +105,6 @@ class Program
         Console.WriteLine("Cliente removido (se existia).");
     }
 
-    // ==========================================================
-    // 5 - LISTAR CLIENTES
-    // ==========================================================
     static void ListarClientes()
     {
         bool vazio = true;
@@ -135,9 +119,6 @@ class Program
             Console.WriteLine("Árvore vazia.");
     }
 
-    // ==========================================================
-    // 6 - TESTE AUTOMÁTICO (sua main original)
-    // ==========================================================
     static void TesteAutomatico()
     {
         arvore = new BPlusTree<int, Cliente>(2);
