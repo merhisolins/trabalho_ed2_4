@@ -15,6 +15,9 @@ namespace MeuProjeto
             int idade = rnd.Next(18, 90);
             string telefone = GerarTelefone();
 
+            nome = Cliente.AjustarNome(nome);
+            telefone = Cliente.AjustarTelefone(telefone);
+
             return new Cliente
             {
                 CodCliente = cod,

@@ -57,6 +57,9 @@ class Program
 
         Console.Write("Telefone: ");
         string telefone = Console.ReadLine();
+        
+        nome = Cliente.AjustarNome(nome);
+        telefone = Cliente.AjustarTelefone(telefone);
 
         var cli = new Cliente
         {
