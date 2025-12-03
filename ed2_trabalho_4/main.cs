@@ -49,15 +49,29 @@ class Program
             Console.WriteLine("Código inválido.");
             return;
         }
+    
+        string nome;
+        while (true)
+        {
+            Console.Write("Nome: ");
+            nome = Console.ReadLine();
 
-        Console.Write("Nome: ");
-        string nome = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(nome))
+            {
+                Console.WriteLine("Nome inválido! Digite novamente.");
+                continue; 
+            }
+
+            break; 
+        }
+    
+
         Console.Write("Idade: ");
         int idade = int.Parse(Console.ReadLine());
 
         Console.Write("Telefone: ");
         string telefone = Console.ReadLine();
-        
+
         nome = Cliente.AjustarNome(nome);
         telefone = Cliente.AjustarTelefone(telefone);
 
