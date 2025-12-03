@@ -1,37 +1,36 @@
+using System;
+
 namespace MeuProjeto
 {
     public class Cliente
     {
+        public const int NomeLen = 40;
+        public const int TelefoneLen = 20;
+
         public int CodCliente { get; set; }
-        public string Nome { get; set; }   
+        public string Nome { get; set; } = string.Empty;
         public int Idade { get; set; }
-        public string Telefone { get; set; } 
+        public string Telefone { get; set; } = string.Empty;
 
         public static string AjustarNome(string nome)
         {
-            if (string.IsNullOrEmpty(nome))
-                nome = "";
-
-            if (nome.Length > 40)
-                return nome.Substring(0, 40);
-
-            return nome.PadRight(40, ' ');
+            nome ??= string.Empty;
+            nome = nome.Trim();
+            return nome.Length >= NomeLen
+                ? nome.Substring(0, NomeLen)
+                : nome.PadRight(NomeLen, ' ');
         }
 
         public static string AjustarTelefone(string telefone)
         {
-            if (string.IsNullOrEmpty(telefone))
-                telefone = "";
-
-            if (telefone.Length > 20)
-                return telefone.Substring(0, 20);
-
-            return telefone.PadRight(20, ' ');
+            telefone ??= string.Empty;
+            telefone = telefone.Trim();
+            return telefone.Length >= TelefoneLen
+                ? telefone.Substring(0, TelefoneLen)
+                : telefone.PadRight(TelefoneLen, ' ');
         }
 
         public override string ToString()
-        {
-            return $"{CodCliente} - {Nome} - Idade: {Idade} - Tel: {Telefone}";
-        }
+            => $"{CodCliente} - {Nome} - Idade: {Idade} - Tel: {Telefone}";
     }
 }

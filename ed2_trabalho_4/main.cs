@@ -19,7 +19,7 @@ class Program
             Console.WriteLine("3 - Buscar cliente");
             Console.WriteLine("4 - Remover cliente");
             Console.WriteLine("5 - Listar clientes");
-            Console.WriteLine("6 - Executar TESTE automático (seu código original)");
+            Console.WriteLine("6 - Executar teste automático");
             Console.WriteLine("7 - Salvar arquivos (metadados/indice/dados)");
             Console.WriteLine("8 - Sair");
             Console.Write("Escolha: ");

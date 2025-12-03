@@ -76,7 +76,6 @@ namespace MeuProjeto
 
             Node node = _root;
 
-            // desce até folha
             while (!node.IsLeaf)
             {
                 int i = 0;
@@ -155,7 +154,7 @@ namespace MeuProjeto
             Node q = new Node(_d, isLeaf: true);
             q.Parent = leaf.Parent;
 
-            q.KeyCount = _d + 1; // d+1
+            q.KeyCount = _d + 1; 
 
             for (int j = 0; j < q.KeyCount; j++)
             {
